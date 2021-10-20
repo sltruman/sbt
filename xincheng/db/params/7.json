@@ -1,0 +1,123 @@
+{
+    "line_name": "1",
+    "area_name": "2",
+    "station_name": "1",
+    "robot_name": "7",
+    "scheduler": [
+        "172.16.0.2",
+        60000
+    ],
+    "agent": [
+        "172.16.0.3",
+        60001
+    ],
+    "plc": [
+        "172.16.0.1",
+        10200,
+        0,
+        0
+    ],
+    "plc2.port": 10300,
+    "plc.dbs": [
+        13,
+        14,
+        28
+    ],
+    "plc.areas": [
+        [
+            -3499,
+            4299
+        ],
+        [
+            20,
+            8800
+        ],
+        [
+            -530,
+            500
+        ],
+        [
+            2300,
+            4300
+        ],
+        [
+            -3400,
+            2200
+        ]
+    ],
+    "locating": [
+        "192.168.10.15",
+        30002
+    ],
+    "locating.version": 5,
+    "locating.value": [
+        [
+            4569.580078,
+            6842.743652
+        ],
+        -0.267611
+    ],
+    "locating.points.A": [
+        0,
+        6600,
+        500,
+        90
+    ],
+    "locating.points.B": [
+        3299,
+        6600,
+        500,
+        90
+    ],
+    "locating.photo_size": [
+        1076,
+        771
+    ],
+    "placing": [
+        "172.16.0.5",
+        9898
+    ],
+    "placing.no_wait": true,
+    "placing.pallet_pos": [
+        -3499,
+        20,
+        -520
+    ],
+    "placing.pallet_size": [
+        7800,
+        2100,
+        100
+    ],
+    "placing.pallets.left.pos": null,
+    "placing.pallets.left.size": null,
+    "placing.pallets.middle.pos": [
+        -4500,
+        7600,
+        -400
+    ],
+    "placing.pallets.middle.size": [
+        6000,
+        1500,
+        500
+    ],
+    "placing.pallets.middle.left_section": [
+        900,
+        5000
+    ],
+    "placing.pallets.middle.right_section": [
+        4000,
+        6000
+    ],
+    "placing.pallets.right.pos": [
+        1800,
+        7600,
+        -400
+    ],
+    "placing.pallets.right.size": [
+        2000,
+        1500,
+        500
+    ],
+    "sorting.handle_width": 2100,
+    "sorting.grab_z": -135
+}

@@ -1,0 +1,13 @@
+[Unit]
+Description=大件一次数据服务
+ 
+[Mount]
+What=//192.168.10.10/file_share
+Where=/home/speedbot/large_sorting_first/data
+Type=cifs
+Options=username=speedbot,password=Speedbot12#$
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

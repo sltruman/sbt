@@ -1,0 +1,177 @@
+###待分拣的钢板到位-新城
+POST http://localhost:60000/large_sort_area/system/inPlace
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "location":"1",
+    "in_place_time":"2021-02-05 12:23:23",
+    "area_code":"2",
+    "plate_id":"a31",
+    "length":8000,
+    "width":2300,
+    "thickness":20,
+    "plate_location":"60;52;40;10;1.2;",
+    "file_path":"/test7"
+    
+}
+
+###待分拣的钢板到位-新城
+POST http://localhost:60000/large_sort_area/system/judgePlateBelongLocation
+Content-Type: application/json
+
+{
+    "plate_id":"14",
+    "length":8000,
+    "width":2300,
+    "thickness":20,
+    "plate_location":"100;100;40;10;1.2;",
+    "file_path":"/2021-07-24/O210721SG100035A01/O210721SG100035A01"
+    //"file_path":"/2021-07-08/M210705610L8A01/M210705610L8A01"
+    //"file_path":"/2021-08-02/O210731Q345B12A01/O210731Q345B12A01"
+    
+}
+
+###暂停分拣
+POST http://localhost:60000/large_sort_area/robot/pause
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "robot_code":["7"]
+}
+
+###恢复分拣-多个
+POST http://localhost:60000/large_sort_area/robot/recover
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "robot_code":["7"]
+}
+
+###停止分拣
+POST http://localhost:60000/large_sort_area/system/end
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1"
+}
+
+###工作站状态
+POST http://localhost:60000/large_sort_area/system/status
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1"
+}
+
+###机器人状态
+POST http://localhost:60000/large_sort_area/robot/status
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1"
+}
+
+###拍照
+POST http://localhost:60000/large_sort_area/system/takePhoto
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1"
+}
+
+###小托盘到位
+POST http://192.168.10.15:60000/large_sort_area/system/emptyFrameInPlace
+Content-Type: application/json
+
+{
+    "robot_id":"7",
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1",
+    "place_id":"right",
+    "in_place_time":"2021-02-05 12:23:23"
+}
+
+###设置小托盘高度
+POST http://localhost:60000/large_sort_area/system/uptFrameStackHeight
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1",
+    "robot_id":"7",
+    "place_id":"left",
+    "part_num":"-1",
+    "stack_id":"0#255#127"
+}
+
+###小托盘进度
+POST http://192.168.10.15:60000/large_sort_area/system/frameProcess
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1",
+    "robot_id":"7"
+}
+
+###小堆叠情况
+POST http://192.168.10.15:60000/large_sort_area/system/queryFrameStack
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1",
+    "robot_id":"7",
+    "place_id":"middle"
+}
+
+
+###获取寻边数据
+POST http://localhost:60000/large_sort_area/system/queryPointEdge
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1"
+}
+
+
+###
+POST http://localhost:60000/large_sort_area/system/queryLargeModelState
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1"
+}
+
+
+
+###
+POST http://localhost:60000/large_sort_area/system/uptLargeModelState
+Content-Type: application/json
+
+{
+    "sort_line":"1",
+    "area_code":"2",
+    "location":"1",
+    "status_val":"0"
+}
+

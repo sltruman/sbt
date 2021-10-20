@@ -1,0 +1,137 @@
+# yaml 配置实例
+version: '3'
+networks:
+  default:
+    external:
+      name: large_sorting_first
+services:
+  tile1:
+    image: mirrors.speedbot.net/showroom/large_sorting_first:1.8.2
+    container_name: tile1
+    command: [./tiling-service1]
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.16.0.6
+  tile0:
+    image: mirrors.speedbot.net/showroom/large_sorting_first:1.8.2
+    container_name: tile0
+    command: [./tiling-service0]
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.16.0.5
+  agent1:
+    depends_on: [tile1]
+    image: mirrors.speedbot.net/showroom/large_sorting_first:1.9.2
+    container_name: agent1
+    command: [python3,-u,agent.py,'60001','8']
+    restart: always
+    privileged: true
+    networks:
+      default:
+        ipv4_address: 172.16.0.4
+    volumes:
+      - ./data:/home/data
+      - ./db:/home/db
+      - ../zlt/mybigsort1/templImgData/:/home/db/vision/8/template
+      - .:/home
+  agent0:
+    depends_on: [tile0]
+    image: mirrors.speedbot.net/showroom/large_sorting_first:1.9.2
+    container_name: agent0
+    command: [python3,-u,agent.py,'60001','7']
+    restart: always
+    privileged: true
+    networks:
+      default:
+        ipv4_address: 172.16.0.3
+    volumes:
+      - ./data:/home/data
+      - ./db:/home/db
+      - ../zlt/mybigsort1/templImgData/:/home/db/vision/7/template
+      - .:/home
+  scheduler:
+    depends_on: [agent0,agent1]
+    image: mirrors.speedbot.net/showroom/large_sorting_first:1.9.2
+    container_name: scheduler
+    command: [python3,-u,scheduler.py,'60000']
+    restart: always
+    privileged: true
+    networks:
+      default:
+        ipv4_address: 172.16.0.2
+    ports:
+      - 60000:60000/tcp
+    volumes:
+      - ./data:/home/data
+      - ./db:/home/db
+      - ../zlt/mybigsort/current/:/home/static/vision/7/current
+      - ../zlt/mybigsort2/current/:/home/static/vision/8/current
+      - .:/home
+
+    environment:  
+      - general_control=['192.168.10.10',7852] #总控
+      - station_2_critical_x=4400             #2区托盘右侧x范围
+      
+      - agents.0.line_name='1'            # 1：等离子切割；2：激光切割
+      - agents.0.area_name='2'            # 2：大件一次分拣区
+      - agents.0.station_name='1'         # 工作站编号
+      - agents.0.robot_name='7'           # 机器人编号
+      - agents.0.scheduler=['172.16.0.2',60000] #调度服务地址
+      - agents.0.agent=['172.16.0.3',60001]    # 分拣实例地址
+      - agents.0.plc=['172.16.0.1',10200,0,0] #桁架PLC地址,端口,rack,slot
+      - agents.0.plc.dbs=[13,14,28]          # 控制区:13 反馈区:14 共轨干涉状态:27
+      - agents.0.plc.areas=[-3499,4299],[20,8800],[-530,500],[2300,4300],[-3400,2200] #桁架PLC坐标范围x,y,z,干涉区x,复位点
+      - agents.0.plc2.port=10300
+      - agents.0.locating=['192.168.10.15',30002] #定位寻边服务地址,端口
+      - agents.0.locating.version=5           #定位寻边服务版本，4手动 5触发寻边错误 6自动 7新版
+      - agents.0.locating.value=([4569.580078, 6842.743652], -0.267611)
+      - agents.0.locating.points.A=[0, 6600, 500, 90]  #定位寻边服务A臂标定点
+      - agents.0.locating.points.B=[3299, 6600, 500, 90] #定位寻边服务B臂标定点
+      - agents.0.locating.photo_size=[1076,771]
+      - agents.0.placing=['172.16.0.5',9898]    #平铺点计算服务地址
+      - agents.0.placing.no_wait=True #不查滚筒线
+      - agents.0.placing.pallet_pos=[-3499,20,-520] #大托盘放置点
+      - agents.0.placing.pallet_size=[7800,2100,100] #大托盘尺寸
+      - agents.0.placing.pallets.left.pos=None #放置点
+      - agents.0.placing.pallets.left.size=None #长宽高
+      - agents.0.placing.pallets.middle.pos=[-4500,7600,-400]  #放置点
+      - agents.0.placing.pallets.middle.size=[6000,1500,500] #长宽高
+      - agents.0.placing.pallets.middle.left_section=[900,5000] #填充抓手中心放置偏移，左，右，下，上
+      - agents.0.placing.pallets.middle.right_section=[4000,6000] #填充抓手中心放置偏移，左，右，下，上
+      - agents.0.placing.pallets.right.pos=[1800,7600,-400]  #放置点
+      - agents.0.placing.pallets.right.size=[2000,1500,500] #长宽高
+      - agents.0.sorting.handle_width=2100   #桁架宽度，决定最小避障宽度
+      - agents.0.sorting.grab_z=-135         #抓取高度
+
+      - agents.1.line_name='1'
+      - agents.1.area_name='2'
+      - agents.1.station_name='2'
+      - agents.1.robot_name='8'
+      - agents.1.scheduler=['172.16.0.2',60000] 
+      - agents.1.agent=['172.16.0.4',60001]
+      - agents.1.plc=['172.16.0.1',10300,0,0]
+      - agents.1.plc.dbs=[27,28,14]
+      - agents.1.plc.areas=[-4299,3499],[20,8800],[-530,500],[-4300,-2300],[-2200,3400]
+      - agents.1.plc2.port=10200
+      - agents.1.locating=['192.168.10.15',30002]
+      - agents.1.locating.version=5
+      - agents.1.locating.value=([2500, 7000], 0)
+      - agents.1.locating.points.A=[0, 6700, 500, -90]
+      - agents.1.locating.points.B=[3399, 6700, 500, 90]
+      - agents.1.locating.photo_size=[1076,771]
+      - agents.1.placing=['172.16.0.6',9898]
+      - agents.1.placing.no_wait=True
+      - agents.1.placing.pallet_pos=[-4299,20,-520]
+      - agents.1.placing.pallet_size=[7800,2100,100]
+      - agents.1.placing.pallets.left.pos=[-4400,7500,-400] #放置点
+      - agents.1.placing.pallets.left.size=[2000,1500,100] #长宽高
+      - agents.1.placing.pallets.middle.pos=[-1800,7600,-400]  #放置点
+      - agents.1.placing.pallets.middle.size=[4000,1500,100] #长宽高
+      - agents.1.placing.pallets.middle.left_section=[0,2000] #填充抓手中心放置偏移，左，右，下，上
+      - agents.1.placing.pallets.middle.right_section=[2000,4000] #填充抓手中心放置偏移，左，右，下，上
+      - agents.1.placing.pallets.right.pos=[1600,7500,-400]  #放置点
+      - agents.1.placing.pallets.right.size=[2000,1500,100] #长宽高
+      - agents.1.sorting.handle_width=2100
+      - agents.1.sorting.grab_z=-135

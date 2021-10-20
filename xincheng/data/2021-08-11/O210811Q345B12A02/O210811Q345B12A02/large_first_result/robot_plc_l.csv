@@ -1,0 +1,3 @@
+color_id,left_one,left_two,left_three,left_four,left_five,left_six,left_seven,left_eight,right_one,right_two,right_three,right_four,right_five,right_six,right_seven,right_eight,left_offset,right_offset,left_angleoffset,right_angleoffset,size,angle,center_x,center_y,width,height,bdcenter_x,bdcenter_x,part_class,part_rotation
+60#151#139,255,183,255,131,27,0,0,0,124,191,167,252,127,2,0,0,"(-927.5, 150.5)","(1224.5, -8.5)",0,0,3,-0.0,2168.5,1457.5,4319.0,667.0,2169.0,1458.0,TPJ004861729,0
+60#77#26,255,135,255,27,192,13,0,0,79,121,190,223,228,15,0,0,"(-927.5, -150.5)","(1224.5, 8.5)",0,0,3,-0.0,2168.5,652.5,4319.0,667.0,2169.0,653.0,TPJ004861729,2

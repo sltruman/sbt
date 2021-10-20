@@ -1,0 +1,12 @@
+[Unit]
+Description=大件一次服务-视觉1
+
+[Service]
+WorkingDirectory=/home/speedbot/zlt/mybigsort1/build
+ExecStart=/home/speedbot/zlt/mybigsort1/build/bigsortmain
+Environment='GENICAM_GENTL64_PATH=/opt/sentech/lib'
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

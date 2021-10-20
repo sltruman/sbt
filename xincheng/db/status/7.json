@@ -1,0 +1,17 @@
+{
+    "step": "waiting",
+    "plate_name": "a33",
+    "placeable": true,
+    "ignored_parts": [],
+    "disabled": false,
+    "corner": [
+        [
+            4569.580078,
+            6842.743652
+        ],
+        -0.267611
+    ],
+    "error_module": 1,
+    "error_message": "无法连接桁架！",
+    "error_help": "确认桁架已经启动且各项状态正常。"
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=大件一次服务
+
+[Service]
+WorkingDirectory=/home/speedbot/large_sorting_first
+ExecStart=/usr/bin/docker-compose up 
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,131 @@
+{
+    "line_name": "1",
+    "area_name": "2",
+    "station_name": "2",
+    "robot_name": "8",
+    "scheduler": [
+        "172.16.0.2",
+        60000
+    ],
+    "agent": [
+        "172.16.0.4",
+        60001
+    ],
+    "plc": [
+        "172.16.0.1",
+        10300,
+        0,
+        0
+    ],
+    "plc2.port": 10200,
+    "plc.dbs": [
+        27,
+        28,
+        14
+    ],
+    "plc.areas": [
+        [
+            -4299,
+            3499
+        ],
+        [
+            20,
+            8800
+        ],
+        [
+            -530,
+            500
+        ],
+        [
+            -4300,
+            -2300
+        ],
+        [
+            -2200,
+            3400
+        ]
+    ],
+    "locating": [
+        "192.168.10.15",
+        30002
+    ],
+    "locating.version": 5,
+    "locating.value": [
+        [
+            2500,
+            7000
+        ],
+        0
+    ],
+    "locating.points.A": [
+        0,
+        6700,
+        500,
+        -90
+    ],
+    "locating.points.B": [
+        3399,
+        6700,
+        500,
+        90
+    ],
+    "locating.photo_size": [
+        1076,
+        771
+    ],
+    "placing.no_wait": true,
+    "placing": [
+        "172.16.0.6",
+        9898
+    ],
+    "placing.pallet_pos": [
+        -4299,
+        20,
+        -520
+    ],
+    "placing.pallet_size": [
+        7800,
+        2100,
+        100
+    ],
+    "placing.pallets.left.pos": [
+        -4400,
+        7500,
+        -400
+    ],
+    "placing.pallets.left.size": [
+        2000,
+        1500,
+        100
+    ],
+    "placing.pallets.middle.pos": [
+        -1800,
+        7600,
+        -400
+    ],
+    "placing.pallets.middle.size": [
+        4000,
+        1500,
+        100
+    ],
+    "placing.pallets.middle.left_section": [
+        0,
+        2000
+    ],
+    "placing.pallets.middle.right_section": [
+        2000,
+        4000
+    ],
+    "placing.pallets.right.pos": [
+        1600,
+        7500,
+        -400
+    ],
+    "placing.pallets.right.size": [
+        2000,
+        1500,
+        100
+    ],
+    "sorting.handle_width": 2100,
+    "sorting.grab_z": -135
+}
