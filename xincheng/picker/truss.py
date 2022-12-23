@@ -197,7 +197,7 @@ class Truss():
         plc_areas = self.params['plc.areas']
         plc_dbs = self.params['plc.dbs']
         
-        print(f'连接桁架：{plc[0],plc[1],plc[2],plc[3]}')
+        print(f'连接桁架：',plc,plc2_port,plc_areas,plc_dbs)
         
         try:
             self.truss = robot.truss.Truss(self.name,plc[0],plc[1],plc[2],plc[3],plc2_port,plc_dbs,plc_areas[0],plc_areas[1],plc_areas[2],plc_areas[3],plc_areas[4])

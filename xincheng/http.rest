@@ -7,12 +7,12 @@ Content-Type: application/json
     "location":"1",
     "in_place_time":"2021-02-05 12:23:23",
     "area_code":"2",
-    "plate_id":"a31",
-    "length":8000,
-    "width":2300,
+    "plate_id":"a35",
+    "length":8450,
+    "width":1820,
     "thickness":20,
     "plate_location":"60;52;40;10;1.2;",
-    "file_path":"/test7"
+    "file_path":"/test4"
     
 }
 
@@ -21,12 +21,12 @@ POST http://localhost:60000/large_sort_area/system/judgePlateBelongLocation
 Content-Type: application/json
 
 {
-    "plate_id":"14",
+    "plate_id":"15",
     "length":8000,
     "width":2300,
     "thickness":20,
     "plate_location":"100;100;40;10;1.2;",
-    "file_path":"/2021-07-24/O210721SG100035A01/O210721SG100035A01"
+    "file_path":"/test"
     //"file_path":"/2021-07-08/M210705610L8A01/M210705610L8A01"
     //"file_path":"/2021-08-02/O210731Q345B12A01/O210731Q345B12A01"
     

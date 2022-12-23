@@ -29,7 +29,9 @@ if __name__ == '__main__':
             host,port = params['agent']
             name = params['robot_name']
             url = f'http://{host}:{port}/params/set/{name}'
+            print(host,port)
             res = http.put(url,json=dict(params=params))
+
     except:
         print(f'无法连接到工作站{name}！')
     else:

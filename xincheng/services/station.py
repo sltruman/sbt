@@ -241,8 +241,6 @@ def judge_plate():
         return jsonify(code=400,msg='参数错误!',data=args)
     
     try:
-        params = config.stations('2')
-
         plate_png_file = os.path.join(file_path,'plate.png')
         robot_plc_csv = os.path.join(file_path,'robot_plc_r.csv')
         
@@ -256,18 +254,11 @@ def judge_plate():
         
         station_2_critical_x = config.scheduler['station_2_critical_x']
         plate_left = station_2_critical_x - plate_offset[0] - plate_size[0]
-        area_x = params['plc.areas'][0]
-
-        data = '2'
-        for part in plate_parts:
-            if part['handle'] == 0: continue
-            grab_pos_x = plate_left + part['b_grab_pos'][0]
-            if grab_pos_x > area_x[1]: data = '1'
     except:
         traceback.print_exc()
         return jsonify(code=400,msg='未知错误！',data='')
     
-    return jsonify(code=200,msg='成功！',data=data)
+    return jsonify(code=200,msg='成功！',data='data')
 
 @blueprint.route('/large_sort_area/system/sortFinishStatus',methods=['POST'])
 def focused_parts():
